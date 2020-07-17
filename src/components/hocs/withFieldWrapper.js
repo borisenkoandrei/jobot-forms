@@ -22,6 +22,16 @@ export default WrappedComponent =>
             !isLinked && initialRequired && this.setState({ required: required ? initialRequired || required : false });
         }
 
+        componentDidUpdate = () => {
+            const { settings, required } = this.props;
+            const { required: stateRequired } = this.state;
+            const isLinked = isLinkedField({ settings });
+
+            if (isLinked) {
+                stateRequired !== required && this.setState({ required });
+            }
+        }
+
         onChange = value => {
             const { onChange, field, form, form: { resetFieldState }, meta: { modified, submitting } } = this.props;
             const serverError = this.getServerError();
@@ -68,8 +78,8 @@ export default WrappedComponent =>
         render() {
             const { label, extra = '', meta: { submitFailed, error, modified, dirtySinceLastSubmit }, settings } = this.props;
             const serverError = this.getServerError();
-            const isLinked = isLinkedField({ settings });
-            const required = isLinked ? this.props.required : this.state.required;
+
+            const required = this.state.required;
 
             return <div style={{ marginBottom: 20 }} className={cx({ 'jobot-form-invalid': !!error })}>
                 { !this.hideLabel() &&

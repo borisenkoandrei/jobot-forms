@@ -26,37 +26,37 @@ class Select extends Component {
         }
     }
 
-    componentDidUpdate(prev) {
-        const {
-            settings,
-            formValues,
-            required,
-            toggleRequired,
-            fieldsWithoutValidation,
-            changeFieldValidation,
-            input: {
-                name
-            },
-            options: propsOptions
-        } = this.props;
-        const options = this.getOptions();
+    // componentDidUpdate(prev) {
+    //     const {
+    //         settings,
+    //         formValues,
+    //         required,
+    //         toggleRequired,
+    //         fieldsWithoutValidation,
+    //         changeFieldValidation,
+    //         input: {
+    //             name
+    //         },
+    //         options: propsOptions
+    //     } = this.props;
+    //     const options = this.getOptions();
 
-        if (!equals(formValues[settings.regionField], prev.formValues[prev.settings.regionField]) ||
-            !equals(formValues[settings.countryField], prev.formValues[prev.settings.countryField])
-        ) {
-            this.onChange({ value: undefined });
-        }
+    //     if (!equals(formValues[settings.regionField], prev.formValues[prev.settings.regionField]) ||
+    //         !equals(formValues[settings.countryField], prev.formValues[prev.settings.countryField])
+    //     ) {
+    //         this.onChange({ value: undefined });
+    //     }
 
-        const newRequiredStatus = !isEmpty(options);
+    //     const newRequiredStatus = !isEmpty(options);
 
-        if (newRequiredStatus !== required) {
-            toggleRequired(newRequiredStatus);
-        }
+    //     if (newRequiredStatus !== required) {
+    //         toggleRequired(newRequiredStatus);
+    //     }
 
-        if (fieldsWithoutValidation[name] !== isEmpty(options) && !isEmpty(propsOptions)) {
-            changeFieldValidation(name, isEmpty(options));
-        }
-    }
+    //     if (fieldsWithoutValidation[name] !== isEmpty(options) && !isEmpty(propsOptions)) {
+    //         changeFieldValidation(name, isEmpty(options));
+    //     }
+    // }
 
     onChange = (data) => {
         const { settings, onChange } = this.props;

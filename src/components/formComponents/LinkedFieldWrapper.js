@@ -3,6 +3,10 @@ import { Field } from 'react-final-form';
 import { path } from 'ramda';
 
 class LinkedFieldWrapper extends Component {
+    state = {
+        required: false,
+    }
+
     render() {
         const { field, children } = this.props;
         const linkField = path(['settings', 'linkField'], field);
@@ -10,7 +14,7 @@ class LinkedFieldWrapper extends Component {
         const linkValue = path(['settings', 'linkValue'], field);
 
         return (
-            <Field name={linkField}>
+            <Field name={linkField} subscription={{ value: true }}>
                 { ({ input: { value } }) => {
                     if (linkType === 'hide') {
                         return value === linkValue ? children({ required: true }) : null;

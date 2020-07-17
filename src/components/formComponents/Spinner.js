@@ -1,15 +1,9 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
 
-const Spinner = () => {
+const Spinner = ({ size = 18 }) => {
     return (
-        <Loader
-            className='spinner'
-            type="TailSpin"
-            color="#FFFFFF"
-            height={18}
-            width={18}
-        />
+        <div className='spinner' />
     );
 };
 
